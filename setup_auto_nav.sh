@@ -7,8 +7,8 @@ echo "=== 🚀 Instalador do modo Kiosk ==="
 read -p "Informe a URL que deve abrir no Chromium: " KIOSK_URL
 read -p "Informe o usuário que rodará o serviço [default: cepedi]: " KIOSK_USER
 KIOSK_USER=${KIOSK_USER:-cepedi}
-read -p "Informe o tempo de espera (em segundos) antes de abrir o navegador [default: 20]: " WAIT_TIME
-WAIT_TIME=${WAIT_TIME:-20}
+read -p "Informe o tempo de espera (em segundos) antes de abrir o navegador [default: 15]: " WAIT_TIME
+WAIT_TIME=${WAIT_TIME:-15}
 
 echo ""
 echo "=== Resumo das configurações ==="
