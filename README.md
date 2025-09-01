@@ -27,13 +27,13 @@ cd auto_nav
 Antes de executar o script, é necessário torná-lo executável:
 
 ```bash
-chmod +x setup-kiosk.sh
+chmod +x setup_auto_nav.sh
 ```
 
 ### 3. Execute o instalador
 
 ```bash
-sudo ./setup-kiosk.sh
+sudo ./setup_auto_nav.sh
 ```
 
 ### 4. Informe os parâmetros solicitados
