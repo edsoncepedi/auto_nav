@@ -1,4 +1,4 @@
-# 🚀 Raspberry Pi Kiosk Setup
+# 🚀 Raspberry Pi Auto_Nav Setup
 
 Este repositório contém um script para configurar automaticamente o Raspberry Pi em **modo kiosk**, abrindo o navegador Chromium em tela cheia com a URL desejada. O script instala dependências, cria um **serviço systemd** e garante que o navegador seja iniciado automaticamente após o boot do sistema.
 
