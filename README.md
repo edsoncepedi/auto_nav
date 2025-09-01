@@ -32,7 +32,7 @@ chmod +x setup_auto_nav.sh
 
 ### 3. Execute o instalador
 
-Recomenda-se o uso do script por meio de um terminal SSH (Ex: Putty), pois o acesso direto pela interface gráfica ou pelo RealVNC pode ocasionar em erros devido ao servido do próprio Server VNC que tem posse da interface X11.
+"É recomendado executar o script via terminal SSH (por exemplo, usando Putty), pois o acesso direto pela interface gráfica ou pelo RealVNC pode causar erros, já que o servidor VNC assume o controle da interface X11."
 
 ```bash
 sudo ./setup_auto_nav.sh
