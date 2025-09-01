@@ -27,13 +27,15 @@ cd auto_nav
 Antes de executar o script, é necessário torná-lo executável:
 
 ```bash
-chmod +x setup-kiosk.sh
+chmod +x setup_auto_nav.sh
 ```
 
 ### 3. Execute o instalador
 
+É recomendado executar o script via terminal SSH (por exemplo, usando Putty), pois o acesso direto pela interface gráfica ou pelo RealVNC pode causar erros, já que o servidor VNC assume o controle da interface X11.
+
 ```bash
-sudo ./setup-kiosk.sh
+sudo ./setup_auto_nav.sh
 ```
 
 ### 4. Informe os parâmetros solicitados
