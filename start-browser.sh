@@ -11,10 +11,11 @@ export XAUTHORITY=/home/$USER/.Xauthority
   --disable-infobars \
   --kiosk \
   --start-fullscreen \
-  "$URL" &
+  "$URL" 
+#&
 
 # Aguarda o navegador abrir
-sleep 10
+#sleep 10
 
 # Foca a janela
-xdotool search -sync --onlyvisible --class Chromium windowactivate
+#xdotool search -sync --onlyvisible --class Chromium windowactivate
