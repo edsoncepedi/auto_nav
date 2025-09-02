@@ -5,17 +5,20 @@ echo "=== 🚀 Instalador do modo Kiosk ==="
 
 # --- CONFIGURAÇÕES INTERATIVAS ---
 read -p "Informe a URL que deve abrir no Chromium: " KIOSK_URL
-read -p "Informe o usuário que rodará o serviço [default: cepedi]: " KIOSK_USER
-KIOSK_USER=${KIOSK_USER:-cepedi}
 read -p "Informe o tempo de espera (em segundos) antes de abrir o navegador [default: 15]: " WAIT_TIME
 WAIT_TIME=${WAIT_TIME:-15}
 
 echo ""
 echo "=== Resumo das configurações ==="
 echo "URL: $KIOSK_URL"
-echo "Usuário: $KIOSK_USER"
+echo "Usuário: $USER"
 echo "Tempo de espera: $WAIT_TIME segundos"
 echo ""
+
+# --- GRAVANDO VARIÁVEL DE AMBIENTE ---
+echo "" >> ~/.profile
+echo "export URL=\"$URL\"" >> ~/.profile
+
 read -p "Confirmar e continuar? (s/n): " CONFIRM
 if [[ "$CONFIRM" != "s" && "$CONFIRM" != "S" ]]; then
     echo "❌ Instalação cancelada."
@@ -32,34 +35,7 @@ apt update && apt upgrade -y
 echo "=== Instalando dependências ==="
 apt install -y chromium-browser xdotool wmctrl
 
-# --- CRIA SCRIPT DE INICIALIZAÇÃO ---
-echo "=== Criando script de inicialização do navegador ==="
-cat << EOF > /usr/local/bin/start-browser.sh
-#!/bin/bash
-
-URL="$KIOSK_URL"
-
-# Define display e permissões
-export DISPLAY=:0
-export XAUTHORITY=/home/$KIOSK_USER/.Xauthority
-
-# Abre Chromium em modo kiosk
-/usr/bin/chromium-browser \
-  --noerrdialogs \
-  --disable-session-crashed-bubble \
-  --disable-infobars \
-  --kiosk \
-  --start-fullscreen \
-  "\$URL" &
-
-# Aguarda o navegador abrir
-sleep 10
-
-# Foca a janela
-wmctrl -a Chromium || xdotool search -sync --onlyvisible --class Chromium windowactivate
-EOF
-
-chmod +x /usr/local/bin/start-browser.sh
+chmod +x /$PWD/start-browser.sh
 
 # --- CRIA SERVIÇO SYSTEMD ---
 echo "=== Criando serviço systemd ==="
@@ -70,12 +46,12 @@ After=network.target graphical.target
 Requires=graphical.target
 
 [Service]
-User=$KIOSK_USER
+User=$USER
 Environment=XDG_RUNTIME_DIR=/run/user/1000
 Environment=DISPLAY=:0
 
 ExecStartPre=/bin/sleep $WAIT_TIME
-ExecStart=/usr/local/bin/start-browser.sh
+ExecStart=/$PWD/start-browser.sh
 
 Restart=always
 
