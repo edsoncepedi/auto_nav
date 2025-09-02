@@ -43,7 +43,6 @@ sudo ./setup_auto_nav.sh
 Durante a execução, o script solicitará:
 
 * **URL** a ser aberta (veja lista de possibilidades abaixo)
-* **Usuário** que rodará o serviço (padrão: `cepedi`)
 * **Tempo de espera** antes de iniciar o navegador (padrão: `15s`)
 
 Após a instalação, o Raspberry Pi iniciará o navegador **automaticamente em modo kiosk** a cada boot.
