@@ -11,7 +11,7 @@ WAIT_TIME=${WAIT_TIME:-15}
 echo ""
 echo "=== Resumo das configurações ==="
 echo "URL: $KIOSK_URL"
-echo "Usuário: $USER"
+echo "Usuário: $SUDO_USER"
 echo "Tempo de espera: $WAIT_TIME segundos"
 echo ""
 
@@ -46,7 +46,7 @@ After=network.target graphical.target
 Requires=graphical.target
 
 [Service]
-User=$USER
+User=$SUDO_USER
 Environment=XDG_RUNTIME_DIR=/run/user/1000
 Environment=DISPLAY=:0
 

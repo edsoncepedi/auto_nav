@@ -2,7 +2,7 @@
 
 # Define display e permissões
 export DISPLAY=:0
-export XAUTHORITY=/home/$USER/.Xauthority
+export XAUTHORITY=/home/$SUDO_USER/.Xauthority
 
 # Abre Chromium em modo kiosk
 /usr/bin/chromium-browser \
