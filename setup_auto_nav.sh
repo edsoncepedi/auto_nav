@@ -16,8 +16,15 @@ echo "Tempo de espera: $WAIT_TIME segundos"
 echo ""
 
 # --- GRAVANDO VARIÁVEL DE AMBIENTE ---
-echo "" >> ~/.profile
-echo "export URL=\"$KIOSK_URL\"" >> ~/.profile
+# Arquivo profile do usuário
+PROFILE_FILE="/home/$SUDO_USER/.profile"
+
+# Adiciona ou atualiza a variável URL
+if grep -q "^export URL=" "$PROFILE_FILE"; then
+    sed -i "s|^export URL=.*|export URL=\"$KIOSK_URL\"|" "$PROFILE_FILE"
+else
+    echo "export URL=\"$KIOSK_URL\"" >> "$PROFILE_FILE"
+fi
 
 read -p "Confirmar e continuar? (s/n): " CONFIRM
 if [[ "$CONFIRM" != "s" && "$CONFIRM" != "S" ]]; then
@@ -49,6 +56,7 @@ Requires=graphical.target
 User=$SUDO_USER
 Environment=XDG_RUNTIME_DIR=/run/user/1000
 Environment=DISPLAY=:0
+Environment=URL=$KIOSK_URL
 
 ExecStartPre=/bin/sleep $WAIT_TIME
 ExecStart=$PWD/start-browser.sh
