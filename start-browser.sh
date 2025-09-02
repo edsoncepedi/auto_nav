@@ -2,7 +2,7 @@
 
 # Define display e permissões
 export DISPLAY=:0
-export XAUTHORITY=/home/$SUDO_USER/.Xauthority
+export XAUTHORITY=/home/$USER/.Xauthority
 
 # Abre Chromium em modo kiosk
 /usr/bin/chromium-browser \
@@ -11,7 +11,7 @@ export XAUTHORITY=/home/$SUDO_USER/.Xauthority
   --disable-infobars \
   --kiosk \
   --start-fullscreen \
-  "\$URL" &
+  "$URL" &
 
 # Aguarda o navegador abrir
 sleep 10

@@ -17,7 +17,7 @@ echo ""
 
 # --- GRAVANDO VARIÁVEL DE AMBIENTE ---
 echo "" >> ~/.profile
-echo "export URL=\"$URL\"" >> ~/.profile
+echo "export URL=\"$KIOSK_URL\"" >> ~/.profile
 
 read -p "Confirmar e continuar? (s/n): " CONFIRM
 if [[ "$CONFIRM" != "s" && "$CONFIRM" != "S" ]]; then
@@ -35,7 +35,7 @@ apt update && apt upgrade -y
 echo "=== Instalando dependências ==="
 apt install -y chromium-browser xdotool wmctrl
 
-chmod +x /$PWD/start-browser.sh
+chmod +x $PWD/start-browser.sh
 
 # --- CRIA SERVIÇO SYSTEMD ---
 echo "=== Criando serviço systemd ==="
@@ -51,7 +51,7 @@ Environment=XDG_RUNTIME_DIR=/run/user/1000
 Environment=DISPLAY=:0
 
 ExecStartPre=/bin/sleep $WAIT_TIME
-ExecStart=/$PWD/start-browser.sh
+ExecStart=$PWD/start-browser.sh
 
 Restart=always
 
@@ -67,3 +67,4 @@ systemctl restart auto_nav.service
 
 echo "✅ Instalação concluída!"
 echo "O navegador abrirá em modo kiosk com a URL: $KIOSK_URL"
+sudo reboot
