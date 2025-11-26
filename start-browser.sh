@@ -10,6 +10,8 @@ export XAUTHORITY=/home/$USER/.Xauthority
   --disable-session-crashed-bubble \
   --disable-infobars \
   --kiosk \
+  --disable-features=UseOzonePlatform \
+  --disable-gpu
   --start-fullscreen \
   "$URL" 
 #&
