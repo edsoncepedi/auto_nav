@@ -49,8 +49,8 @@ echo "=== Criando serviço systemd ==="
 cat << EOF > /usr/lib/systemd/system/auto_nav.service
 [Unit]
 Description=Inicia o navegador automaticamente em modo kiosk
-After=network.target graphical.target
-Requires=graphical.target
+After=systemd-user-sessions.service display-manager.service network-online.target
+Wants=network-online.target
 
 [Service]
 User=$SUDO_USER
