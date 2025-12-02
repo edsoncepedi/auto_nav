@@ -11,7 +11,7 @@ export XAUTHORITY=/home/$USER/.Xauthority
   --disable-infobars \
   --kiosk \
   --disable-features=UseOzonePlatform \
-  --disable-gpu
+  --disable-gpu \
   --start-fullscreen \
   "$URL" 
 #&
